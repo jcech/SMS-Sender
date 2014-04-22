@@ -1,6 +1,7 @@
 class Message < ActiveRecord::Base
   belongs_to :user
-
+  has_many :recipients
+  has_many :contacts, through: :recipients
 
   def text_it
     response = RestClient::Request.new(
