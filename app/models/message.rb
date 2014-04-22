@@ -12,9 +12,8 @@ class Message < ActiveRecord::Base
                     :To => self.number,
                     :From => "3212148535"}
     ).execute
+
   rescue Exception => e
-    print "\n\n\n"
-    puts e
     false
   end
 end
