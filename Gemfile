@@ -14,6 +14,7 @@ gem 'textacular', '~> 3.0'
 gem 'faker'
 gem 'devise'
 gem 'foundation-rails'
+gem 'rest_client'
 
 group :development do
   gem 'better_errors'
