@@ -2,13 +2,28 @@
 
 <%= form_for @message do |f| %>
   <%= f.label :number %>
-  <%= f.text_field :number %>
+  <div id = "numberfield">
+    <p>Number 1 : <%= f.text_field :number, name: 'message[number][1]' %></p>
+  </div>
 
   <%= f.label :body %>
   <%= f.text_area :body %>
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
-
-  <%= f.submit %>
+  <%= f.submit "text" %>
+  <div class="button" id="new-number"></div>
 <% end %>
+
+<script>
+  var number_of_numbers = 1
+
+  $(document).ready(function(){
+    $('#new-number').click(function(){
+      number_of_numbers += 1
+      $('#numberfield').append(
+        "<p>Number " + number_of_numbers +
+        "<input id='message_number' name='message[number][" + number_of_numbers + "]' type='text'>" + "</p>")
+    });
+  });
+</script>
