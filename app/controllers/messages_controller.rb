@@ -4,6 +4,7 @@ class MessagesController < ApplicationController
   end
 
   def show
+    @message = Message.find(params[:id])
   end
 
   def new
@@ -13,7 +14,12 @@ class MessagesController < ApplicationController
   def create
     @message = Message.new(message_params)
 
-    @message.save
+    if @message.text_it
+      @message.save
+      redirect_to message_path(@message)
+    else
+      redirect_to message_path(@message)
+    end
   end
 
 private

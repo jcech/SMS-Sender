@@ -1,0 +1,11 @@
+<h2>New Message</h2>
+
+<%= form_for @message do |f| %>
+  <%= f.label :number %>
+  <%= f.text_field :number %>
+
+  <%= f.label :body %>
+  <%= f.text_area :body %>
+
+  <%= f.submit %>
+<% end %>
