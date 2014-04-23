@@ -1,0 +1,9 @@
+<h2>All Contacts for <%=current_user.email %></h2>
+
+<ul>
+<% @contacts.each do |contact| %>
+  <li><ul><%= contact.name %></li>
+    <li><%= contact.number %></li>
+  </ul>
+<% end %>
+</ul>

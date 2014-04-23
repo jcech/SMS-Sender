@@ -3,7 +3,14 @@
 <%= form_for @message do |f| %>
   <%= f.label :number %>
   <div id = "numberfield">
-    <p>Number 1 : <%= f.text_field :number, name: 'message[number][1]' %></p>
+    <p> Contact 1 :
+      <select name="message[number][1]">
+        <% Contact.all.each do |contact| %>
+          <option value = "<%= contact.number %>">
+            <%= contact.name %> (<%= contact.number%>)
+          </option>
+        <% end %>
+      </select>
   </div>
 
   <%= f.label :body %>
@@ -11,8 +18,8 @@
 
   <%= f.hidden_field :user_id, :value => current_user.id %>
 
-  <%= f.submit "text" %>
-  <div class="button" id="new-number"></div>
+  <%= f.submit "Send" %>
+  <div class="button" id="new-number">Add another contact</div>
 <% end %>
 
 <script>
@@ -21,9 +28,14 @@
   $(document).ready(function(){
     $('#new-number').click(function(){
       number_of_numbers += 1
-      $('#numberfield').append(
-        "<p>Number " + number_of_numbers +
-        "<input id='message_number' name='message[number][" + number_of_numbers + "]' type='text'>" + "</p>")
+      $('#numberfield').append("<p> Contact "+ number_of_numbers + " : " +
+                                 "<select name='message[number][" + number_of_numbers + "]'>" +
+                                   <% Contact.all.each do |contact| %>
+                                     "<option value = '<%= contact.number %>'>" +
+                                       "<%= contact.name %>" +
+                                     "</option>" +
+                                   <% end %>
+                                 "</select>");
     });
   });
 </script>
